@@ -1,0 +1,38 @@
+.home-container {
+    position: relative;
+    width: 100%;
+    max-height: 80vh;
+    overflow: hidden;
+  }
+  
+  .home-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+  
+  .overlay-box {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -30%);
+    background-color: rgba(255, 255, 255, 0.7); /* Genomskinlig vit */
+    padding: 2rem;
+    text-align: center;
+    border-radius: 10px;
+    max-width: 90%;
+  }
+  
+  .produkt-knapp {
+    margin-top: 1rem;
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background-color: #ff9900;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
