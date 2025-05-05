@@ -2,9 +2,10 @@
   position: sticky;
   top: 0;
   z-index: 1000;
-  background-color: #EDE1AC;
+  background-color: #ede1ac93;
   padding: 1.5rem 1rem;
   text-align: center;
+  margin: 0px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
@@ -28,9 +29,11 @@
   font-weight: bold;
   padding: 0.5rem 1rem;
   border-radius: 8px;
-  transition: background 0.2s ease;
+  transition: background 0.2s ease, border-bottom 0.2s ease;
+  border-bottom: 3px solid transparent;
 }
 
-.nav a:hover {
-  background-color: #ffedcc;
+.nav a:hover,
+.nav a.active {
+  border-bottom: 3px solid black;
 }

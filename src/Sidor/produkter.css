@@ -1,0 +1,71 @@
+.produkter-sida {
+    position: relative;
+    padding-top: 60px; 
+  }
+
+.produkt-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem;
+  }
+  
+  .produkt-kort {
+    background-color: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    transition: transform 0.2s;
+  }
+  
+  .bild-wrapper {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .bild-wrapper img {
+    width: 100%;
+    display: block;
+    transition: filter 0.3s ease;
+  }
+  
+  .lagg-till-knapp {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #EDE1AC;
+    color: #000000;
+    border: black 1px solid;
+    padding: 0.7rem 1.8rem;
+    border-radius: 5px;
+    font-weight: bold;
+    display: none;
+    cursor: pointer;
+    z-index: 2;
+  }
+  
+  .bild-wrapper:hover img {
+    filter: blur(1px);
+  }
+  
+  .bild-wrapper:hover .lagg-till-knapp {
+    display: block;
+  }
+  
+  .produkt-info {
+    padding: 1rem 0.5rem;
+  }
+  
+  .produkt-info h3 {
+    margin: 0.5rem 0 0.3rem;
+    font-size: 1.1rem;
+  }
+  
+  .produkt-info p {
+    margin: 0;
+    font-weight: bold;
+    color: #444;
+  }
+  

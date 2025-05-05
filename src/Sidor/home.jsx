@@ -8,7 +8,7 @@ export default function Home() {
     <div className="home-container">
       <img src={homePhoto} alt="Sommartider" className="home-image" />
       <div className="overlay-box">
-        <h2>Sommartider!</h2>
+        <h2>Sommartider.</h2>
         <p>Upptäck våra roliga sommarleksaker – perfekta för lata dagar i trädgården, bus på stranden eller äventyr i parken.</p>
         <Link to="/produkter" className="produkt-knapp">Produkter</Link>
       </div>
