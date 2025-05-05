@@ -1,53 +1,92 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  html, body {
-    height: 100%;
-    width: 100%;
-    overflow-x: hidden;
-  }
-  
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: #ede1ac93;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  margin: 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.title {
+  font-size: 5rem;
+  margin: 0;
+  color: #000000;
+}
+
+.nav {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.nav a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: background 0.2s ease, border-bottom 0.2s ease;
+  border-bottom: 3px solid transparent;
+}
+
+.nav a:hover,
+.nav a.active {
+  border-bottom: 3px solid black;
+}
+
+/* Större bild och full bredd */
 .home-container {
-    position: relative;
-    width: 100%;
-    height: 100vh; 
-    overflow: hidden;
-  }
-  
-  .home-image {
-    width: 100%;
-    height: 100%;
-    margin: 0px;
-    padding: 0px;
-    display: block;
-    object-fit: cover; 
-  }
-  
-  .overlay-box {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(255, 255, 255, 0.7);
-    padding: 0rem;
-    text-align: center;
-    border-radius: 10px;
-    max-width: 100%;
-  }
-  
-  .produkt-knapp {
-    margin-top: 1rem;
-    display: inline-block;
-    padding: 0.8rem 1.5rem;
-    background-color: #ff9900;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: bold;
-  }
-  
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Full höjd på sidan */
+  overflow: hidden;
+}
+
+.home-image {
+  width: 100%; /* Bilden går ut i hela bredden */
+  height: 100%; /* Bilden fyller hela höjden */
+  object-fit: cover; /* Bilden täcker hela ytan utan att förlora proportioner */
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.overlay-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ede1ac82;
+  padding: 0rem;
+  text-align: center;
+  border-radius: 10px;
+  max-width: 100%;
+}
+
+.produkt-knapp {
+  margin-top: 1rem;
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background-color: #EDE1AC;
+  color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+}

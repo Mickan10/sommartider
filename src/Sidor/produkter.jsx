@@ -53,28 +53,34 @@ export default function Produkter() {
     };
   
     return (
-      <div className="produkter-sida">
-        <section className="produkt-grid">
-          {produkter.map((produkt) => (
-            <div key={produkt.id} className="produkt-kort">
-              <div className="bild-wrapper">
-                <img src={produkt.bild} alt={produkt.namn} />
-                <button
-                  className="lagg-till-knapp"
-                  onClick={() => handleAddToCart(produkt)}
-                >
-                  Lägg till
-                </button>
-              </div>
-              <div className="produkt-info">
-                <h3>{produkt.namn}</h3>
-                <p>{produkt.pris}</p>
-              </div>
+        <div className="produkter-sida">
+        <div className="top-bar">
+            <div className="rubrik-container">
+            <h2 className="rubrik">Produkter</h2>
+            <p className="rubrik-text">Gör sommaren extra rolig! Här hittar du leksaker som passar perfekt för stranden, trädgården och picknickar.</p>
             </div>
-          ))}
-        </section>
-  
-        <Cart items={cartItems} onRemove={handleRemoveFromCart} />
-      </div>
-    );
-  }
+            <Cart cartItems={cartItems} />
+        </div>
+
+      
+        <section className="produkt-grid">
+        {produkter.map((produkt) => (
+          <div key={produkt.id} className="produkt-kort">
+            <div className="bild-wrapper">
+            <img src={produkt.bild} alt={produkt.namn} />
+            <div className="knapp-grupp">
+                <button onClick={() => handleRemoveFromCart(produkt.id)}>-</button>
+                <button onClick={() => handleAddToCart(produkt)}>Lägg till</button>
+                <button onClick={() => handleAddToCart(produkt)}>+</button>
+            </div>
+            </div>
+            <div className="produkt-info">
+              <h3>{produkt.namn}</h3>
+              <p>{produkt.pris}</p>
+            </div>
+          </div>
+        ))}
+      </section>
+    </div>
+  );
+}

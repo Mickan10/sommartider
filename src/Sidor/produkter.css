@@ -5,7 +5,7 @@
 
 .produkt-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.5rem;
     padding: 2rem;
   }
@@ -68,4 +68,74 @@
     font-weight: bold;
     color: #444;
   }
+
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    flex-wrap: wrap;
+  }
   
+  .produkt-info {
+    display: flex;  /* Flexbox för horisontell layout */
+    align-items: center;  /* Centrerar texten vertikalt */
+    justify-content: space-between;  /* Fördelar utrymmet mellan texten och priset */
+  }
+  
+  .produkt-info h3 {
+    margin-right: 10px;  /* Litet mellanrum mellan namn och pris */
+  }
+  
+  .produkt-info p {
+    font-weight: bold;  /* Du kan anpassa stil på priset om du vill */
+  }
+  
+  .bild-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  .bild-wrapper img {
+    width: 100%;
+    display: block;
+    border-radius: 8px;
+  }
+  
+  /* Knappgruppen gömd som standard */
+  .knapp-grupp {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    gap: 8px;
+    padding: 6px 10px;
+    border-radius: 8px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  
+  /* Visa knappar vid hover */
+  .bild-wrapper:hover .knapp-grupp {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .knapp-grupp button {
+    border: none;
+    background: #ede1ac81;
+    color: rgb(0, 0, 0);
+    padding: 20px 10px;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+    border: solid 1px black;
+  }
+  
+  .knapp-grupp button:hover {
+    background: #EDE1AC;
+  }
