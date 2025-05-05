@@ -5,7 +5,7 @@
 
 .produkt-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
     gap: 1.5rem;
     padding: 2rem;
   }
@@ -78,17 +78,17 @@
   }
   
   .produkt-info {
-    display: flex;  /* Flexbox för horisontell layout */
-    align-items: center;  /* Centrerar texten vertikalt */
-    justify-content: space-between;  /* Fördelar utrymmet mellan texten och priset */
+    display: flex;  
+    align-items: center;  
+    justify-content: space-between;  
   }
   
   .produkt-info h3 {
-    margin-right: 10px;  /* Litet mellanrum mellan namn och pris */
+    margin-right: 10px;  
   }
   
   .produkt-info p {
-    font-weight: bold;  /* Du kan anpassa stil på priset om du vill */
+    font-weight: bold;  
   }
   
   .bild-wrapper {
@@ -103,7 +103,6 @@
     border-radius: 8px;
   }
   
-  /* Knappgruppen gömd som standard */
   .knapp-grupp {
     position: absolute;
     top: 50%;
