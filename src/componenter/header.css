@@ -1,3 +1,4 @@
+
 .header {
   position: sticky;
   top: 0;
@@ -7,6 +8,10 @@
   text-align: center;
   margin: 0px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.header.not-sticky {
+  position: static; /* inte sticky på produktsidan? */
 }
 
 .title {

@@ -17,6 +17,19 @@
   .footer p {
     margin-bottom: 1rem;
   }
+
+  /* Redigera admin-länk */
+  .admin-link {
+    color: black;
+    font-weight: bold;
+    margin-top: 1rem;
+    display: inline-block;
+    text-decoration: none;
+  }
+  
+  .admin-link:hover {
+    text-decoration: underline;
+  }
   
 
  

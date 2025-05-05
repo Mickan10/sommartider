@@ -50,18 +50,18 @@ html, body {
   border-bottom: 3px solid black;
 }
 
-/* Större bild och full bredd */
+/* Home section */
 .home-container {
   position: relative;
   width: 100%;
-  height: 100vh; /* Full höjd på sidan */
+  height: 100vh; 
   overflow: hidden;
 }
 
 .home-image {
-  width: 100%; /* Bilden går ut i hela bredden */
-  height: 100%; /* Bilden fyller hela höjden */
-  object-fit: cover; /* Bilden täcker hela ytan utan att förlora proportioner */
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover; 
   position: absolute;
   top: 0;
   left: 0;
@@ -76,7 +76,8 @@ html, body {
   padding: 0rem;
   text-align: center;
   border-radius: 10px;
-  max-width: 100%;
+  width: 50%;
+  height: 30%;
 }
 
 .produkt-knapp {
@@ -89,4 +90,33 @@ html, body {
   border-radius: 5px;
   text-decoration: none;
   font-weight: bold;
+}
+
+/* section längre ner */
+.small-images-container {
+  display: flex;
+  justify-content: space-around;
+  padding: 2rem 1rem;
+  margin-top: 5rem;
+}
+
+.small-image-box {
+  position: relative;
+  width: 45%;
+}
+
+.small-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.small-image-text {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 0.5rem;
+  border-radius: 5px;
 }
