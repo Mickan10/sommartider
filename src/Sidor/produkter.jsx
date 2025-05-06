@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from "react";
 import "./produkter.css";
 import Cart from "../componenter/cart";
-import { db } from "../firebase/firebase"; 
+import { db } from "../firebase/firebase";
 import { collection, getDocs } from "firebase/firestore";
+import useStore from "../store/useStore";
 
 export default function Produkter() {
   const [produkter, setProdukter] = useState([]);
-  const [cartItems, setCartItems] = useState([]);
+  const [showButton, setShowButton] = useState(false);
+
+  const { cartItems, addToCart, removeFromCart } = useStore();
 
   useEffect(() => {
     const fetchProdukter = async () => {
       try {
         const querySnapshot = await getDocs(collection(db, "Produkter"));
-        const data = querySnapshot.docs.map(doc => ({
+        const data = querySnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         }));
@@ -25,12 +28,18 @@ export default function Produkter() {
     fetchProdukter();
   }, []);
 
-  const handleAddToCart = (produkt) => {
-    setCartItems((prev) => [...prev, produkt]);
-  };
+  // Visa pilknapp när användaren scrollat ner
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowButton(window.scrollY > 300);
+    };
 
-  const handleRemoveFromCart = (id) => {
-    setCartItems((prev) => prev.filter((item) => item.id !== id));
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
@@ -39,7 +48,8 @@ export default function Produkter() {
         <div className="rubrik-container">
           <h2 className="rubrik">Produkter</h2>
           <p className="rubrik-text">
-            Gör sommaren extra rolig! Här hittar du leksaker som passar perfekt för stranden, trädgården och picknickar.
+            Gör sommaren extra rolig! Här hittar du leksaker som passar perfekt
+            för stranden, trädgården och picknickar.
           </p>
         </div>
         <Cart cartItems={cartItems} />
@@ -51,9 +61,9 @@ export default function Produkter() {
             <div className="bild-wrapper">
               <img src={produkt.bild} alt={produkt.namn} />
               <div className="knapp-grupp">
-                <button onClick={() => handleRemoveFromCart(produkt.id)}>-</button>
-                <button onClick={() => handleAddToCart(produkt)}>Lägg till</button>
-                <button onClick={() => handleAddToCart(produkt)}>+</button>
+                <button onClick={() => removeFromCart(produkt.id)}>-</button>
+                <button onClick={() => addToCart(produkt)}>Lägg till</button>
+                <button onClick={() => addToCart(produkt)}>+</button>
               </div>
             </div>
             <div className="produkt-info">
@@ -63,6 +73,12 @@ export default function Produkter() {
           </div>
         ))}
       </section>
+
+      {showButton && (
+        <button className="scroll-to-top" onClick={scrollToTop}>
+          ↑
+        </button>
+      )}
     </div>
   );
 }

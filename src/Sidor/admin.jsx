@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import "./admin.css"; 
-import { db } from "../firebase/firebase"; 
+import "./admin.css";
+import { useNavigate } from "react-router-dom";
+import { db } from "../firebase/firebase";
 import {
   collection,
   getDocs,
@@ -11,10 +12,23 @@ import {
 } from "firebase/firestore";
 
 export default function Admin() {
+  const navigate = useNavigate();
   const [produkter, setProdukter] = useState([]);
   const [form, setForm] = useState({ namn: "", pris: "", bild: "" });
+  const [editingId, setEditingId] = useState(null);
+  const [newName, setNewName] = useState("");
 
   const produkterCollection = collection(db, "Produkter");
+
+  // Inloggningskontroll
+  useEffect(() => {
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
+    if (isLoggedIn !== "true") {
+      navigate("/login");
+    } else {
+      fetchProdukter();
+    }
+  }, []);
 
   // Hämta produkter
   const fetchProdukter = async () => {
@@ -22,34 +36,40 @@ export default function Admin() {
     setProdukter(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
   };
 
-  useEffect(() => {
-    fetchProdukter();
-  }, []);
-
   // Lägg till produkt
   const handleAdd = async (e) => {
     e.preventDefault();
-    if (!form.namn || !form.pris || !form.bild) return alert("Fyll i alla fält!");
+    if (!form.namn || !form.pris || !form.bild) {
+      alert("Fyll i alla fält!");
+      return;
+    }
 
     await addDoc(produkterCollection, form);
     setForm({ namn: "", pris: "", bild: "" });
     fetchProdukter();
   };
 
-  // Ta bort 
+  // Ta bort produkt
   const handleDelete = async (id) => {
     await deleteDoc(doc(db, "Produkter", id));
     fetchProdukter();
   };
 
-  // Ändra namn
-  const handleUpdate = async (id) => {
-    const newName = prompt("Nytt namn?");
-    if (newName) {
-      const produktRef = doc(db, "Produkter", id);
-      await updateDoc(produktRef, { namn: newName });
-      fetchProdukter();
-    }
+  // Starta redigering
+  const handleUpdate = (id, currentName) => {
+    setEditingId(id);
+    setNewName(currentName);
+  };
+
+  // Spara nytt namn
+  const handleUpdateSubmit = async (id) => {
+    if (!newName) return;
+
+    const produktRef = doc(db, "Produkter", id);
+    await updateDoc(produktRef, { namn: newName });
+    setEditingId(null);
+    setNewName("");
+    fetchProdukter();
   };
 
   return (
@@ -85,8 +105,23 @@ export default function Admin() {
             <div>
               <strong>{produkt.namn}</strong> - {produkt.pris}
             </div>
+
+            {editingId === produkt.id ? (
+              <div className="edit-form">
+                <input
+                  type="text"
+                  value={newName}
+                  onChange={(e) => setNewName(e.target.value)}
+                  placeholder="Nytt namn"
+                />
+                <button onClick={() => handleUpdateSubmit(produkt.id)}>Spara</button>
+                <button onClick={() => setEditingId(null)}>Avbryt</button>
+              </div>
+            ) : (
+              <button onClick={() => handleUpdate(produkt.id, produkt.namn)}>Ändra namn</button>
+            )}
+
             <button onClick={() => handleDelete(produkt.id)}>Ta bort</button>
-            <button onClick={() => handleUpdate(produkt.id)}>Ändra namn</button>
           </div>
         ))}
       </div>

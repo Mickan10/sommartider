@@ -1,0 +1,43 @@
+
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "./login.css";
+
+export default function Login() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    if (username === "admin" && password === "password") {
+      localStorage.setItem("isLoggedIn", "true");
+      navigate("/admin");
+    } else {
+      setError("Fel användarnamn eller lösenord");
+    }
+  };
+
+  return (
+    <div className="login-page">
+      <h2>Logga in som administratör</h2>
+      <form onSubmit={handleLogin}>
+        <input
+          type="text"
+          placeholder="Användarnamn"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Lösenord"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button type="submit">Logga in</button>
+        {error && <p className="error">{error}</p>}
+      </form>
+    </div>
+  );
+}
