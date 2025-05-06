@@ -1,6 +1,6 @@
 .admin-container {
     padding: 2rem;
-    max-width: 1000px;
+    max-width: 1300px;
     margin: 0 auto;
     background-color: #fffef5;
     border-radius: 1rem;
@@ -90,4 +90,24 @@
   .admin-item button:hover {
     background-color: #d5ca92;
   }
+
+  .logout-btn {
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    background-color: #000000; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
   
+  .logout-btn:hover {
+    background-color: #4d4c4c;
+  }
+  
+  .error-message {
+    color: red;
+    margin: 10px 0;
+    font-weight: bold;
+  }

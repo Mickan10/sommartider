@@ -16,67 +16,71 @@ export default function Admin() {
   const [produkter, setProdukter] = useState([]);
   const [form, setForm] = useState({ namn: "", pris: "", bild: "" });
   const [editingId, setEditingId] = useState(null);
-  const [newName, setNewName] = useState("");
+  const [error, setError] = useState("");
 
   const produkterCollection = collection(db, "Produkter");
 
-  // Inloggningskontroll
   useEffect(() => {
-    const isLoggedIn = localStorage.getItem("isLoggedIn");
-    if (isLoggedIn !== "true") {
+    if (localStorage.getItem("isLoggedIn") !== "true") {
       navigate("/login");
     } else {
       fetchProdukter();
     }
-  }, []);
+  }, [navigate]);
 
-  // Hämta produkter
   const fetchProdukter = async () => {
     const data = await getDocs(produkterCollection);
     setProdukter(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
   };
 
-  // Lägg till produkt
-  const handleAdd = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!form.namn || !form.pris || !form.bild) {
-      alert("Fyll i alla fält!");
+      setError("Fyll i alla fält!");
       return;
     }
 
-    await addDoc(produkterCollection, form);
+    setError(""); 
+
+    if (editingId) {
+      await updateDoc(doc(db, "Produkter", editingId), {
+        namn: form.namn,
+        pris: form.pris,
+        bild: form.bild,
+      });
+      setEditingId(null);
+    } else {
+      await addDoc(produkterCollection, form);
+    }
+
     setForm({ namn: "", pris: "", bild: "" });
     fetchProdukter();
   };
 
-  // Ta bort produkt
   const handleDelete = async (id) => {
     await deleteDoc(doc(db, "Produkter", id));
     fetchProdukter();
   };
 
-  // Starta redigering
-  const handleUpdate = (id, currentName) => {
+  const handleEdit = (id, produkt) => {
     setEditingId(id);
-    setNewName(currentName);
+    setForm({ namn: produkt.namn, pris: produkt.pris, bild: produkt.bild });
+    setError("");
   };
 
-  // Spara nytt namn
-  const handleUpdateSubmit = async (id) => {
-    if (!newName) return;
-
-    const produktRef = doc(db, "Produkter", id);
-    await updateDoc(produktRef, { namn: newName });
-    setEditingId(null);
-    setNewName("");
-    fetchProdukter();
+  const handleLogout = () => {
+    localStorage.removeItem("isLoggedIn");
+    navigate("/login");
   };
 
   return (
     <div className="admin-container">
       <h2>Adminpanel</h2>
+      <button onClick={handleLogout} className="logout-btn">Logga ut</button>
 
-      <form onSubmit={handleAdd} className="admin-form">
+      {error && <p className="error-message">{error}</p>}
+
+      <form onSubmit={handleSubmit} className="admin-form">
         <input
           type="text"
           placeholder="Produktnamn"
@@ -95,7 +99,7 @@ export default function Admin() {
           value={form.bild}
           onChange={(e) => setForm({ ...form, bild: e.target.value })}
         />
-        <button type="submit">Lägg till produkt</button>
+        <button type="submit">{editingId ? "Uppdatera produkt" : "Lägg till produkt"}</button>
       </form>
 
       <div className="admin-list">
@@ -110,18 +114,34 @@ export default function Admin() {
               <div className="edit-form">
                 <input
                   type="text"
-                  value={newName}
-                  onChange={(e) => setNewName(e.target.value)}
-                  placeholder="Nytt namn"
+                  placeholder="Produktnamn"
+                  value={form.namn}
+                  onChange={(e) => setForm({ ...form, namn: e.target.value })}
                 />
-                <button onClick={() => handleUpdateSubmit(produkt.id)}>Spara</button>
-                <button onClick={() => setEditingId(null)}>Avbryt</button>
+                <input
+                  type="text"
+                  placeholder="Pris"
+                  value={form.pris}
+                  onChange={(e) => setForm({ ...form, pris: e.target.value })}
+                />
+                <input
+                  type="text"
+                  placeholder="Bild-URL"
+                  value={form.bild}
+                  onChange={(e) => setForm({ ...form, bild: e.target.value })}
+                />
+                <button onClick={handleSubmit}>Spara</button>
+                <button onClick={() => {
+                  setEditingId(null);
+                  setForm({ namn: "", pris: "", bild: "" });
+                }}>Avbryt</button>
               </div>
             ) : (
-              <button onClick={() => handleUpdate(produkt.id, produkt.namn)}>Ändra namn</button>
+              <>
+                <button onClick={() => handleEdit(produkt.id, produkt)}>Ändra</button>
+                <button onClick={() => handleDelete(produkt.id)}>Ta bort</button>
+              </>
             )}
-
-            <button onClick={() => handleDelete(produkt.id)}>Ta bort</button>
           </div>
         ))}
       </div>

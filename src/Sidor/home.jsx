@@ -21,7 +21,8 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Sektionen ligger nu utanför home-container */}
+      <hr />
+
       <section className="small-images-container">
       <div className="small-image-box">
         <img src={small1} alt="Leksak 1" className="small-image large" />

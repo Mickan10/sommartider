@@ -21,7 +21,7 @@ export default function Login() {
 
   return (
     <div className="login-page">
-      <h2>Logga in som administratör</h2>
+      <h2>Logga in som admin</h2>
       <form onSubmit={handleLogin}>
         <input
           type="text"
