@@ -1,19 +1,32 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import "./footer.css"; 
+import "./footer.css";
 
 const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-content">
-        <div className="footer-info">
-          <p><strong></strong> Vi älskar sommarleksaker och glädje i solen!</p>
-          <p><strong>Kontakt:</strong> info@sommartid.se | 070-123 45 67</p>
-        </div>
 
-        <NavLink to="/admin" className="admin-button" title="Endast för personal">
+        <div className="footer-section left">
+          <NavLink to="/admin" className="admin-button" title="Endast för personal">
             <p>Jobbar du här?</p>
           </NavLink>
+        </div>
+
+        <div className="footer-section center">
+          <p><strong>Kontakt:</strong></p>
+          <p>info@sommartid.se<br />070-123 45 67</p>
+        </div>
+
+        <div className="footer-section right">
+            <p>Följ oss:</p>
+            <div className="social-icons">
+              <a href="#" aria-label="Facebook">Facebook</a>
+              <a href="#" aria-label="Instagram">Instagram</a>
+              <a href="#" aria-label="TikTok">Tiktok</a>
+          </div>
+        </div>
+
       </div>
     </footer>
   );

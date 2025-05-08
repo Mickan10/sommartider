@@ -4,8 +4,8 @@
 }
 
 .cart-icon {
-  width: 40px;  
-  height: 40px; 
+  width: 60px;  
+  height: 60px;
 }
 
 .cart-count {
@@ -24,3 +24,13 @@
   align-items: center;
   justify-content: center;
 }
+
+.cart-total {
+  margin-top: 4px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+}
+
