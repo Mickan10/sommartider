@@ -25,15 +25,17 @@
   margin-top: 1rem;
   display: flex;
   justify-content: center;
-  gap: 1.5rem;
+  gap: 1.7rem;
   flex-wrap: wrap;
+  font-size: 25px;
+  font-weight: 400;
 }
 
 .nav a {
   text-decoration: none;
   color: #333;
   font-weight: bold;
-  padding: 0.5rem 1rem;
+  padding: 0.8rem 2rem;
   border-radius: 8px;
   transition: background 0.2s ease, border-bottom 0.2s ease;
   border-bottom: 3px solid transparent;

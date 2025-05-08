@@ -104,19 +104,20 @@
   background: #EDE1AC;
 }
 
+/* Scrollknapp */
 .scroll-to-top {
   position: fixed;
   bottom: 30px;
   right: 30px;
-  background-color: #2b2b2b;
-  color: white;
+  background-color: #f0ffaf;
+  color: rgb(0, 0, 0);
   border: none;
   border-radius: 50%;
   width: 40px;
   height: 40px;
   font-size: 24px;
   cursor: pointer;
-  z-index: 1000;
+  z-index: 9999;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
   transition: background-color 0.3s ease;
 }

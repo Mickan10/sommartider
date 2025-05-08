@@ -13,25 +13,22 @@ export default function Produkter() {
 
   useEffect(() => {
     const fetchProdukter = async () => {
-      try {
-        const querySnapshot = await getDocs(collection(db, "Produkter"));
-        const data = querySnapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        setProdukter(data);
-      } catch (error) {
-        console.error("Fel vid hämtning av produkter:", error);
-      }
+      const querySnapshot = await getDocs(collection(db, "Produkter"));
+      const data = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setProdukter(data);
     };
-
+  
     fetchProdukter();
   }, []);
+  
 
-  // Visa pilknapp när användaren scrollat ner
+  // Scrollpil
   useEffect(() => {
     const handleScroll = () => {
-      setShowButton(window.scrollY > 300);
+      setShowButton(window.scrollY > 50);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -74,11 +71,12 @@ export default function Produkter() {
         ))}
       </section>
 
-      {showButton && (
-        <button className="scroll-to-top" onClick={scrollToTop}>
-          ↑
-        </button>
-      )}
+          {showButton && (
+      <button className="scroll-to-top" onClick={scrollToTop}>
+        ↑
+      </button>
+    )}
+      
     </div>
   );
 }

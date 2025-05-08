@@ -40,33 +40,59 @@ hr {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #ede1ac82;
+  background-color: #ede1acb6;
   padding: 0rem;
   text-align: center;
   border-radius: 10px;
   width: 50%;
-  height: 30%;
+  height: 40%;
 }
 
+.overlay-box p
+  {
+    font-size: 16px;
+    color: #000000;
+    margin: 5px;
+    padding: 10px;
+    font-family: 'Inter', sans-serif;
+    text-align: left;
+  }
+
+  .overlay-box h2 {
+    font-size: 2.5rem;
+    color: #000000;
+    margin: 5px;
+    padding: 0px;
+    text-align: center;
+    font-family: 'Indie Flower', cursive;
+  }
+
 .produkt-knapp {
-  margin-top: 1rem;
+  margin-top: 2px;
   display: inline-block;
-  padding: 0.8rem 1.5rem;
+  padding: 0.9rem 1.7rem;
   background-color: #EDE1AC;
   color: rgb(0, 0, 0);
   border: none;
   border-radius: 5px;
   text-decoration: none;
   font-weight: bold;
-  
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* section längre ner */
+.produkt-knapp:hover {
+  background-color: #f0e08b;
+  color: #000000;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* bilder längre ner */
 .small-images-container {
   display: flex;
   justify-content: space-around;
   padding: 2rem 1rem;
-  margin-top: 5rem;
+  margin-top: 3rem;
 }
 
 .small-image-box {
@@ -74,10 +100,14 @@ hr {
   width: 45%;
 }
 
-.small-image {
+.small-image{
   width: 100%;
   height: auto;
   border-radius: 8px;
+}
+
+.small-image small{
+  height: 70%;
 }
 
 .small-image-text {

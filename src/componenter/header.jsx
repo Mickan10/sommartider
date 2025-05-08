@@ -7,7 +7,7 @@ export default function Header() {
 
   return (
     <header className={`header ${isProdukterPage ? "not-sticky" : ""}`}>
-      <h1 className="title">Sommartider</h1>
+      <h1 className="title">Sommartider.</h1>
       <nav className="nav">
         <NavLink to="/" end>Hem</NavLink>
         <NavLink to="/produkter">Produkter</NavLink>
