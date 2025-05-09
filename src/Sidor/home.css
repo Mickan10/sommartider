@@ -49,35 +49,38 @@ hr {
 }
 
 .overlay-box p
-  {
-    font-size: 16px;
-    color: #000000;
-    margin: 5px;
-    padding: 10px;
-    font-family: 'Inter', sans-serif;
-    text-align: left;
-  }
+{
+  font-size: 16px;
+  color: #000000;
+  margin: 5px;
+  padding: 10px;
+  font-family: 'Inter', sans-serif;
+  text-align: left;
+  font-weight: 500;
+}
 
-  .overlay-box h2 {
-    font-size: 2.5rem;
-    color: #000000;
-    margin: 5px;
-    padding: 0px;
-    text-align: center;
-    font-family: 'Indie Flower', cursive;
-  }
+.overlay-box h2 {
+  font-size: 2.5rem;
+  color: #000000;
+  margin: 5px;
+  padding: 0px;
+  text-align: center;
+  font-family: 'Indie Flower', cursive;
+}
 
 .produkt-knapp {
   margin-top: 2px;
   display: inline-block;
-  padding: 0.9rem 1.7rem;
+  padding: 0.9rem 1.9rem;
   background-color: #EDE1AC;
+  font-family: 'Indie Flower', cursive;
   color: rgb(0, 0, 0);
   border: none;
   border-radius: 5px;
   text-decoration: none;
   font-weight: bold;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 20px;
 }
 
 .produkt-knapp:hover {

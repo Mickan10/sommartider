@@ -25,9 +25,10 @@ export default function About() {
         </p>
         <p>Visste du att sommartid infördes för att bättre ta tillvara på dygnets ljusa timmar? Idén har funnits i över hundra år och handlar egentligen om en sak: att få ut mer av solen. Det passar oss perfekt – för Sommardesign handlar om just det. Att ta tillvara på varje stråle, varje skratt och varje stund under bar himmel.</p>
 
+        <p>När vi tänker på sommartid, tänker vi inte bara på en vriden klocka. Vi tänker på sand mellan tårna, saft som smakar sol, och vinden som fladdrar i ett picknicktäcke. För oss är sommartid en inbjudan att leka mer, stressa mindre och fylla livet med färg, frihet och fantasi.</p>
+
         <img src="https://grene-prod-shop-media.azureedge.net/d5pmmprd/natur_bornefodselsdag_07.jpg?format=jpg&width=640&height=953&quality=75&mode=crop&rxy=0.5,0.5" alt="Sommartid" className="about-image" />
 
-        <p>När vi tänker på sommartid, tänker vi inte bara på en vriden klocka. Vi tänker på sand mellan tårna, saft som smakar sol, och vinden som fladdrar i ett picknicktäcke. För oss är sommartid en inbjudan att leka mer, stressa mindre och fylla livet med färg, frihet och fantasi.</p>
       </div>
     </div>
   );

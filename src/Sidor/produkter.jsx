@@ -70,7 +70,7 @@ export default function Produkter() {
             </div>
             <div className="produkt-info">
               <h3>{produkt.namn}</h3>
-              <p>{produkt.pris}</p>
+              <p>{produkt.pris} kr </p>
             </div>
           </div>
         ))}

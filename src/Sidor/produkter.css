@@ -16,7 +16,7 @@ hr {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
   gap: 1.5rem;
-  padding: 2rem;
+  padding: 1rem;
 }
 
 .produkt-kort {
@@ -79,6 +79,7 @@ hr {
   color: #444;
   margin-right: 10px;
   font-weight: bold;  
+  font-size: 20px;
 }
 
 .top-bar {
