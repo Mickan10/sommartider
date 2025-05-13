@@ -21,9 +21,9 @@ const Footer = () => {
         <div className="footer-section right">
             <p>Följ oss:</p>
             <div className="social-icons">
-              <a href="#" aria-label="Facebook">Facebook</a>
+              {/*<a href="#" aria-label="Facebook">Facebook</a>
               <a href="#" aria-label="Instagram">Instagram</a>
-              <a href="#" aria-label="TikTok">Tiktok</a>
+              <a href="#" aria-label="TikTok">Tiktok</a>*/}
           </div>
         </div>
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./admin.css";
-import { useNavigate } from "react-router"; 
+import { useNavigate } from "react-router";
 import { db } from "../firebase/firebase";
 import {
   collection,
@@ -25,14 +25,14 @@ export default function Admin() {
     if (localStorage.getItem("isLoggedIn") !== "true") {
       navigate("/login");
     } else {
+      const fetchProdukter = async () => {
+        const data = await getDocs(produkterCollection);
+        setProdukter(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      };
+
       fetchProdukter();
     }
-  }, [navigate]);
-
-  const fetchProdukter = async () => {
-    const data = await getDocs(produkterCollection);
-    setProdukter(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-  };
+  }, [navigate, produkterCollection]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -58,12 +58,15 @@ export default function Admin() {
     }
 
     setForm({ namn: "", pris: "", bild: "" });
-    fetchProdukter();
+
+    const data = await getDocs(produkterCollection);
+    setProdukter(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
   };
 
   const handleDelete = async (id) => {
     await deleteDoc(doc(db, "Produkter", id));
-    fetchProdukter();
+    const data = await getDocs(produkterCollection);
+    setProdukter(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
   };
 
   const handleEdit = (id, produkt) => {
@@ -88,7 +91,9 @@ export default function Admin() {
         Logga ut
       </button>
 
-      {error && <p className="error-message">{Object.values(error).join(", ")}</p>}
+      {Object.keys(error).length > 0 && (
+        <p className="error-message">{Object.values(error).join(", ")}</p>
+      )}
 
       <form onSubmit={handleSubmit} className="admin-form">
         <input
@@ -115,13 +120,16 @@ export default function Admin() {
         />
         {error.bild && <p className="error-message">{error.bild}</p>}
 
-        <button type="submit">{editingId ? "Uppdatera" : "Lägg till"}</button>
+        <button type="submit">
+          {editingId ? "Uppdatera produkt" : "Lägg till produkt"}
+        </button>
         {editingId && (
           <button
             type="button"
             onClick={() => {
               setEditingId(null);
               setForm({ namn: "", pris: "", bild: "" });
+              setError({});
             }}
           >
             Avbryt
@@ -134,10 +142,14 @@ export default function Admin() {
           <div key={produkt.id} className="admin-item">
             <img src={produkt.bild} alt={produkt.namn} />
             <div>
-              <strong>{produkt.namn}</strong> - {produkt.pris}
+              <strong>{produkt.namn}</strong> – {produkt.pris} kr
             </div>
-            <button onClick={() => handleEdit(produkt.id, produkt)}>Ändra</button>
-            <button onClick={() => handleDelete(produkt.id)}>Ta bort</button>
+            <button onClick={() => handleEdit(produkt.id, produkt)}>
+              Ändra
+            </button>
+            <button onClick={() => handleDelete(produkt.id)}>
+              Ta bort
+            </button>
           </div>
         ))}
       </div>
