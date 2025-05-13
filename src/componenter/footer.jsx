@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router";
 import "./footer.css";
 
 const Footer = () => {
@@ -8,9 +8,9 @@ const Footer = () => {
       <div className="footer-content">
 
         <div className="footer-section left">
-          <NavLink to="/admin" className="admin-button" title="Endast för personal">
+          <Link to="/admin" className="admin-button" title="Endast för personal">
             <p>Jobbar du här?</p>
-          </NavLink>
+          </Link>
         </div>
 
         <div className="footer-section center">
