@@ -74,28 +74,6 @@ hr {
   width: 100%;
 }
 
-.produkt-knapp {
-  margin-top: 2px;
-  display: inline-block;
-  padding: 0.9rem 1.9rem;
-  background-color: #EDE1AC;
-  font-family: 'Indie Flower', cursive;
-  color: rgb(0, 0, 0);
-  border: none;
-  border-radius: 5px;
-  text-decoration: none;
-  font-weight: bold;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  font-size: 20px;
-}
-
-.produkt-knapp:hover {
-  background-color: #f0e08b;
-  color: #000000;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
 .small-images-container {
   display: flex;
   justify-content: space-around;
@@ -171,3 +149,121 @@ hr {
   background-color: #f0e08b;
   cursor: pointer;
 }
+
+@media screen and (max-width: 768px) {
+  .overlay-box {
+    width: 80%; 
+  }
+
+  .overlay-box h2 {
+    font-size: 3rem;
+  }
+
+  .overlay-box p {
+    font-size: 18px;
+  }
+
+  .text2 {
+    font-size: 2rem; 
+  }
+
+  .small-image.large {
+    height: 500px;
+  }
+
+  .small-image.small {
+    height: 700px;
+  }
+
+  .gul-knapp {
+    padding: 1.5rem 3rem;
+    font-size: 1.5rem;
+  }
+
+  .home-image {
+    object-position: center;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .overlay-box {
+    width: 90%; 
+    padding: 1rem;
+  }
+
+  .text2 {
+    font-size: 1.7rem; 
+  }
+
+  .overlay-box h2 {
+    font-size: 2.5rem;
+  }
+
+  .overlay-box p {
+    font-size: 16px;
+  }
+
+  .small-image.large {
+    height: 400px;
+  }
+
+  .small-image.small {
+    height: 600px;
+    width: 100%;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  .gul-knapp {
+    padding: 1rem 2rem;
+    font-size: 1.3rem;
+  }
+
+  .home-image {
+    object-position: center;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .overlay-box {
+    width: 95%;
+    padding: 0.8rem;
+  }
+
+  .overlay-box h2 {
+    font-size: 2rem;
+  }
+
+  .text2 {
+    font-size: 1.2rem;
+  }
+
+  .overlay-box p {
+    font-size: 14px;
+  }
+
+  .small-image-box {
+    width: 100%;
+  }
+
+  .small-image.large,
+  .small-image.small {
+    object-fit: cover;
+    width: 100%;
+    height: auto; 
+    max-height: none; 
+  }
+
+  .gul-knapp {
+    padding: 1rem 2.5rem;
+    font-size: 1.2rem;
+    width: 80%;
+    background-color: #ede1ac;
+    bottom: 400px;
+  }
+
+  .home-image {
+    object-position: center;
+  }
+}
+

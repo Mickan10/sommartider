@@ -15,11 +15,6 @@ export default function Home() {
         <p>
           Välkommen till ett hav av sommarlek! Utforska vårt färgglada sortiment av roliga och spännande sommarleksaker – perfekta för sköna dagar i trädgården, plask och stoj vid stranden eller fartfyllda äventyr i parken. Oavsett om du vill bygga sandslott, spela vattenkrig eller bara njuta av solskenet med vänner och familj, har vi leksakerna som förvandlar varje sommardag till ett minne fyllt av skratt och glädje.
         </p>
-        <div className="button-wrapper">
-          {/*<Link to="/produkter" className="produkt-knapp">
-            Produkter
-          </Link>*/}
-        </div>
       </div>
       </div>
 
