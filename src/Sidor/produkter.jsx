@@ -49,7 +49,7 @@ export default function Produkter() {
       <div className="top-bar">
         <div className="rubrik-container">
           <h2 className="rubrik">Produkter</h2>
-          <p>
+          <p className="produktp">
             Gör sommaren extra rolig! Här hittar du leksaker som passar perfekt
             för stranden, trädgården och picknickar.
           </p>

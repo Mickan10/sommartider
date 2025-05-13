@@ -2,13 +2,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 2rem;
+    padding: 6rem;
     min-height: 100vh;
     background-color: rgb(255, 255, 255);
 }
   
   .about-box {
-    max-width: 600px;
+    max-width: 800px;
     background-color: #ede1acb6; 
     border-radius: 20px;
     padding: 2rem;
