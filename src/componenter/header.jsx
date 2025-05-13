@@ -1,10 +1,13 @@
-import { Link } from 'react-router'; 
 import React from 'react';
+import { Link, useLocation } from 'react-router';
 import "./header.css";
 
 export default function Header() {
+  const location = useLocation();
+  const isSticky = !(location.pathname === "/produkter" || location.pathname === "/admin");
+
   return (
-    <header className="header">
+    <header className={`header ${!isSticky ? "not-sticky" : ""}`}>
       <h1 className="title">Sommartider.</h1>
       <nav className="nav">
         <Link to="/">Hem</Link>
@@ -14,4 +17,3 @@ export default function Header() {
     </header>
   );
 }
-
