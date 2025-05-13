@@ -31,7 +31,9 @@ export default function Home() {
           <p className="small-image-text"></p>
           <Link to="/produkter" className="gul-knapp">Se alla produkter</Link>
         </div>
+        
         <div className="small-image-box">
+        <p className="text2">Upptäck sommarens roligaste nyheter!</p>
           <img src={small2} alt="Leksak 2" className="small-image small" />
           <p className="small-image-text"></p>
         </div>

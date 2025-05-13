@@ -125,6 +125,21 @@ hr {
   height: 850px;
 }
 
+.text2
+{
+  position: absolute;
+  top: 0%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #000000;
+  font-family: 'Indie Flower', cursive;
+  font-size: 2.4rem;
+  text-align: center;
+  font-weight: bold;
+  background-color: #f0df8bc5;
+  white-space: nowrap;
+}
+
 .small-image-box:nth-child(1) {
   margin-top: 0;
 }
@@ -135,11 +150,10 @@ hr {
 
 .gul-knapp {
   display: inline-block;
-  margin-top: 1rem;
-  padding: 1rem 2rem;
+  padding: 2rem 4rem;
   background-color: #EDE1AC;
   color: #000;
-  font-size: 1.2rem;
+  font-size: 1.7rem;
   font-family: 'Indie Flower', cursive;
   font-weight: bold;
   text-decoration: none;
@@ -147,6 +161,10 @@ hr {
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   transition: background-color 0.3s ease;
+  position: absolute; 
+  bottom: 60px; 
+  left: 50%; 
+  transform: translateX(-50%); 
 }
 
 .gul-knapp:hover {
