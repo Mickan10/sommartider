@@ -1,8 +1,15 @@
 import React, { useEffect, useState } from "react";
 import "./admin.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router"; 
 import { db } from "../firebase/firebase";
-import { collection, getDocs, addDoc, deleteDoc, updateDoc, doc } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  addDoc,
+  deleteDoc,
+  updateDoc,
+  doc,
+} from "firebase/firestore";
 import { productSchema } from "../valid/valid";
 
 export default function Admin() {
@@ -29,34 +36,31 @@ export default function Admin() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
     const { error } = productSchema.validate(form, { abortEarly: false });
-  
+
     if (error) {
-      // Skapa ett objekt med fel per fält
       const newErrors = {};
       error.details.forEach((detail) => {
         const field = detail.path[0];
         newErrors[field] = detail.message;
       });
-  
       setError(newErrors);
       return;
     }
-  
-    setError({}); // Rensa gamla fel
-  
+
+    setError({});
+
     if (editingId) {
       await updateDoc(doc(db, "Produkter", editingId), form);
       setEditingId(null);
     } else {
       await addDoc(produkterCollection, form);
     }
-  
+
     setForm({ namn: "", pris: "", bild: "" });
     fetchProdukter();
   };
-  
+
   const handleDelete = async (id) => {
     await deleteDoc(doc(db, "Produkter", id));
     fetchProdukter();
@@ -64,7 +68,11 @@ export default function Admin() {
 
   const handleEdit = (id, produkt) => {
     setEditingId(id);
-    setForm({ namn: produkt.namn, pris: produkt.pris, bild: produkt.bild });
+    setForm({
+      namn: produkt.namn,
+      pris: produkt.pris,
+      bild: produkt.bild,
+    });
     setError({});
   };
 
@@ -76,7 +84,9 @@ export default function Admin() {
   return (
     <div className="admin-container">
       <h2>Adminpanel</h2>
-      <button onClick={handleLogout} className="logout-btn">Logga ut</button>
+      <button onClick={handleLogout} className="logout-btn">
+        Logga ut
+      </button>
 
       {error && <p className="error-message">{Object.values(error).join(", ")}</p>}
 
@@ -126,16 +136,8 @@ export default function Admin() {
             <div>
               <strong>{produkt.namn}</strong> - {produkt.pris}
             </div>
-
-            {editingId === produkt.id ? (
-              <div className="edit-form">
-              </div>
-            ) : (
-              <>
-                <button onClick={() => handleEdit(produkt.id, produkt)}>Ändra</button>
-                <button onClick={() => handleDelete(produkt.id)}>Ta bort</button>
-              </>
-            )}
+            <button onClick={() => handleEdit(produkt.id, produkt)}>Ändra</button>
+            <button onClick={() => handleDelete(produkt.id)}>Ta bort</button>
           </div>
         ))}
       </div>

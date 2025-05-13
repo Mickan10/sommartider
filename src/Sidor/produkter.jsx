@@ -33,7 +33,7 @@ export default function Produkter() {
   // Scrollpil 
       useEffect(() => {
         const handleScroll = () => {
-          setShowButton(window.scrollY > 50);
+          setShowButton(window.scrollY > 50); 
         };
 
         window.addEventListener("scroll", handleScroll);
