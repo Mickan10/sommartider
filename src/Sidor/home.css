@@ -41,31 +41,37 @@ hr {
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #ede1acb6;
-  padding: 0rem;
+  padding: 2rem;
   text-align: center;
   border-radius: 10px;
   width: 60%;
-  height: 44%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-.overlay-box p
-{
+.overlay-box p {
   font-size: 20px;
   color: #000000;
-  margin: 5px;
-  padding: 10px;
   font-family: 'Inter', sans-serif;
   text-align: left;
   font-weight: 500;
+  margin: 0;
+  padding: 0;
 }
 
 .overlay-box h2 {
-  font-size: 2.5rem;
+  font-size: 4rem;
   color: #000000;
-  margin: 5px;
-  padding: 0px;
-  text-align: center;
+  margin: 0;
   font-family: 'Indie Flower', cursive;
+}
+
+.overlay-box .button-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
 }
 
 .produkt-knapp {
@@ -90,35 +96,60 @@ hr {
   transition: background-color 0.3s ease;
 }
 
-/* bilder längre ner */
 .small-images-container {
   display: flex;
   justify-content: space-around;
   padding: 2rem 1rem;
   margin-top: 3rem;
+  gap: 0rem; 
+  flex-wrap: wrap; 
 }
 
 .small-image-box {
   position: relative;
   width: 45%;
+  justify-content: space-around;
 }
 
-.small-image{
+.small-image {
   width: 100%;
-  height: auto;
   border-radius: 8px;
+  object-fit: cover;
 }
 
-.small-image small{
-  height: 70%;
+.small-image.large {
+  height: 650px;
 }
 
-.small-image-text {
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  padding: 0.5rem;
-  border-radius: 5px;
+.small-image.small {
+  height: 850px;
+}
+
+.small-image-box:nth-child(1) {
+  margin-top: 0;
+}
+
+.small-image-box:nth-child(2) {
+  margin-top: 3rem;
+}
+
+.gul-knapp {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 1rem 2rem;
+  background-color: #EDE1AC;
+  color: #000;
+  font-size: 1.2rem;
+  font-family: 'Indie Flower', cursive;
+  font-weight: bold;
+  text-decoration: none;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+}
+
+.gul-knapp:hover {
+  background-color: #f0e08b;
+  cursor: pointer;
 }

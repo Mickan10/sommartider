@@ -1,6 +1,6 @@
 
 .header {
-  position: sticky;
+
   top: 0;
   z-index: 1000;
   background-color: #ede1ac93;
@@ -9,10 +9,6 @@
   margin: 0px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   font-family: 'Indie Flower', cursive;
-}
-
-.header.not-sticky {
-  position: static; /* inte sticky på produktsidan? */
 }
 
 .title {
