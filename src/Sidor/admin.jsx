@@ -2,14 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./admin.css";
 import { useNavigate } from "react-router";
 import { db } from "../firebase/firebase";
-import {
-  collection,
-  getDocs,
-  addDoc,
-  deleteDoc,
-  updateDoc,
-  doc,
-} from "firebase/firestore";
+import {collection,getDocs,addDoc,deleteDoc,updateDoc,doc,} from "firebase/firestore";
 import { productSchema } from "../valid/valid";
 
 export default function Admin() {
@@ -21,19 +14,22 @@ export default function Admin() {
 
   const produkterCollection = collection(db, "Produkter");
 
+  // Hämta produkter från Firestore
+  const fetchProdukter = async () => {
+    const data = await getDocs(produkterCollection);
+    setProdukter(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+  };
+
   useEffect(() => {
     if (localStorage.getItem("isLoggedIn") !== "true") {
       navigate("/login");
     } else {
-      const fetchProdukter = async () => {
-        const data = await getDocs(produkterCollection);
-        setProdukter(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-      };
-
-      fetchProdukter();
+      fetchProdukter(); 
     }
-  }, [navigate, produkterCollection]);
+  }, [navigate]);
+  
 
+  // Lägg till eller uppdatera produkt
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { error } = productSchema.validate(form, { abortEarly: false });
@@ -51,22 +47,20 @@ export default function Admin() {
     setError({});
 
     if (editingId) {
+      // ändra en produkt
       await updateDoc(doc(db, "Produkter", editingId), form);
       setEditingId(null);
     } else {
+      // Lägger till ny info
       await addDoc(produkterCollection, form);
     }
-
     setForm({ namn: "", pris: "", bild: "" });
-
-    const data = await getDocs(produkterCollection);
-    setProdukter(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    fetchProdukter();
   };
 
   const handleDelete = async (id) => {
     await deleteDoc(doc(db, "Produkter", id));
-    const data = await getDocs(produkterCollection);
-    setProdukter(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    fetchProdukter();
   };
 
   const handleEdit = (id, produkt) => {
@@ -79,6 +73,7 @@ export default function Admin() {
     setError({});
   };
 
+  // Loggar ut
   const handleLogout = () => {
     localStorage.removeItem("isLoggedIn");
     navigate("/login");
@@ -90,10 +85,6 @@ export default function Admin() {
       <button onClick={handleLogout} className="logout-btn">
         Logga ut
       </button>
-
-      {Object.keys(error).length > 0 && (
-        <p className="error-message">{Object.values(error).join(", ")}</p>
-      )}
 
       <form onSubmit={handleSubmit} className="admin-form">
         <input

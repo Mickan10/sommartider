@@ -24,14 +24,16 @@
 
 .footer-section.center {
   text-align: center;
+  font-family: 'Indie Flower', cursive;
 }
 
 .footer-section.right {
-  text-align: right;
+  text-align: center;
+  font-family: 'Indie Flower', cursive;
 }
 
 .footer p {
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 400;
   margin: 0.5rem 0;
 }
@@ -40,16 +42,16 @@
 .admin-button {
   background-color: #BBDAE2;
   color: #000000;
-  width: 70px;
-  height: 70px;
+  border: solid 2px #1e7085;
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   text-decoration: none;
-  font-size: 0.8rem;
   transition: transform 0.3s ease, background-color 0.3s ease;
-  padding: 10px;
+  padding: 20px;
   text-align: center;
 }
 
@@ -61,7 +63,7 @@
 /* social ikoner */
 .social-icons {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   gap: 12px;
   margin-top: 0.5rem;
 }
@@ -74,7 +76,6 @@
   transform: scale(1.2);
 }
 
-/* Responsive */
 @media (max-width: 600px) {
   .footer-content {
     flex-direction: column;

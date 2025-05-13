@@ -7,10 +7,10 @@ import useStore from "../store/useStore";
 
 export default function Produkter() {
   const [produkter, setProdukter] = useState([]);
-  const [showButton, setShowButton] = useState(false);
 
   const { cartItems, addToCart, removeFromCart } = useStore();
 
+  // useEffect för att hämta produkter från firestore.
   useEffect(() => {
     const fetchProdukter = async () => {
       const querySnapshot = await getDocs(collection(db, "Produkter"));
@@ -19,30 +19,14 @@ export default function Produkter() {
         return {
           id: doc.id,
           ...produkt,
-          pris: Number(produkt.pris.toString().replace(/[^\d.]/g, "")), // Tar bort "kr" och gör till tal
+          pris: Number(produkt.pris.toString().replace(/[^\d.]/g, "")), // Tar bort "kr" och gör till tal.
         };
       });
       setProdukter(data); 
     };
   
     fetchProdukter();
-  }, []);
-  
-  
-
-  // Scrollpil 
-      useEffect(() => {
-        const handleScroll = () => {
-          setShowButton(window.scrollY > 50); 
-        };
-
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-      }, []);
-
-      const scrollToTop = () => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }; 
+  }, []); 
 
   return (
     <div className="produkter-sida">
@@ -75,13 +59,6 @@ export default function Produkter() {
           </div>
         ))}
       </section>
-
-          {showButton && (
-      <button className="scroll-to-top" onClick={scrollToTop}>
-        ↑
-      </button>
-    )}
-      
     </div>
   );
 }
