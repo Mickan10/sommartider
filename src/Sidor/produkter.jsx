@@ -12,7 +12,6 @@ export default function Produkter() {
 
   const { cartItems, addToCart, removeFromCart } = useStore();
 
-  // Hämta produkter från Firestore
   useEffect(() => {
     const fetchProdukter = async () => {
       const querySnapshot = await getDocs(collection(db, "Produkter"));
@@ -30,7 +29,6 @@ export default function Produkter() {
     fetchProdukter();
   }, []);
 
-  // Filtrera och sortera produkter
   const filtreradeProdukter = produkter
     .filter((produkt) =>
       produkt.namn.toLowerCase().includes(sokterm.toLowerCase())
@@ -48,9 +46,9 @@ export default function Produkter() {
       return riktning === "stigande" ? jämförelse : -jämförelse;
     });
 
-  // Kontrollera om en produkt finns i kundkorgen
-  const finnsIKundkorgen = (produktId) => {
-    return cartItems.some((item) => item.id === produktId);
+  const getAntalIKundkorgen = (produktId) => {
+    const produkt = cartItems.find((item) => item.id === produktId);
+    return produkt ? produkt.quantity : 0;
   };
 
   return (
@@ -66,7 +64,6 @@ export default function Produkter() {
         <Cart cartItems={cartItems} />
       </div>
 
-      {/* Sök och sortering */}
       <div className="filter-bar">
         <input
           type="text"
@@ -74,7 +71,6 @@ export default function Produkter() {
           value={sokterm}
           onChange={(e) => setSokterm(e.target.value)}
         />
-
         <select
           value={sortering.fält}
           onChange={(e) => setSortering({ ...sortering, fält: e.target.value })}
@@ -82,7 +78,6 @@ export default function Produkter() {
           <option value="namn">Sortera efter namn</option>
           <option value="pris">Sortera efter pris</option>
         </select>
-
         <select
           value={sortering.riktning}
           onChange={(e) =>
@@ -96,31 +91,39 @@ export default function Produkter() {
 
       <hr />
 
-      {/* Produkter */}
       <section className="produkt-grid">
         {filtreradeProdukter.map((produkt) => (
           <div key={produkt.id} className="produkt-kort">
             <div className="bild-wrapper">
               <img src={produkt.bild} alt={produkt.namn} />
-              <div className="knapp-grupp">
-                {finnsIKundkorgen(produkt.id) ? (
-                  <button onClick={() => removeFromCart(produkt.id)}>
-                    Ta bort
-                  </button>
-                ) : (
-                  <button
-                    onClick={() =>
-                      addToCart({ ...produkt, pris: Number(produkt.pris) })
-                    }
-                  >
-                    Lägg till
-                  </button>
-                )}
+
+              {/* Antal i kundkorgen */}
+              {getAntalIKundkorgen(produkt.id) > 0 && (
+                <div className="produkt-antal">
+                  {getAntalIKundkorgen(produkt.id)}
+                </div>
+              )}
+
+              {/* +- knappar visas vid hover */}
+              <div className="bild-knappar">
+                <button onClick={() => removeFromCart(produkt.id)}>-</button>
+                <button
+                  onClick={() =>
+                    addToCart({
+                      ...produkt,
+                      pris: Number(produkt.pris),
+                      quantity: 1,
+                    })
+                  }
+                >
+                  +
+                </button>
               </div>
             </div>
+
             <div className="produkt-info">
               <h3>{produkt.namn}</h3>
-              <p>{produkt.pris} kr </p>
+              <p>{produkt.pris} kr</p>
             </div>
           </div>
         ))}

@@ -39,16 +39,9 @@ hr {
   margin: 0.1rem 0;
 }
 
-.produktp
-{
+.produktp{
   font-size: 1.2rem;
   font-family: 'Inter', sans-serif;
-}
-
-.bild-wrapper {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
 }
 
 .bild-wrapper img {
@@ -146,4 +139,60 @@ hr {
   background-color: #BBDAE2;
 }
 
+/* + och - */
+.bild-wrapper {
+  position: relative;
+  overflow: hidden;
+}
 
+.bild-knappar {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  gap: 20px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 2;
+}
+
+.bild-wrapper:hover .bild-knappar {
+  opacity: 1;
+}
+
+.bild-knappar button {
+  background-color: rgba(255, 255, 255, 0.9);
+  border: none;
+  padding: 15px 20px;
+  font-weight: bold;
+  font-size: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.bild-knappar button:hover {
+  background-color: #ffc080;
+  transform: scale(1.1);
+}
+
+/* antal på produktbild */
+.produkt-antal {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: rgba(255, 132, 0, 0.8);
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  padding: 8px;
+  border-radius: 50%;
+  min-width: 35px;
+  height: 35px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+}

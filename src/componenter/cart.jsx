@@ -5,13 +5,13 @@ import "./cart.css";
 
 export default function Cart() {
   const { cartItems } = useStore();
-  const cartCount = cartItems.length;
+  const cartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
   const totalPrice = cartItems.reduce((sum, item) => sum + Number(item.pris || 0), 0);
 
   return (
     <div className="cart-container">
       <img src={vectorIcon2} alt="Kundkorg" className="cart-icon" />
-      {cartCount > 0 && (
+      {cartCount > 0 &&  (
         <>
           <div className="cart-count">{cartCount}</div>
           <div className="cart-total">
