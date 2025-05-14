@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./admin.css";
 import { useNavigate } from "react-router";
 import { db } from "../firebase/firebase";
@@ -11,10 +11,10 @@ export default function Admin() {
   const [form, setForm] = useState({ namn: "", pris: "", bild: "" });
   const [editingId, setEditingId] = useState(null);
   const [error, setError] = useState({});
+  const formRef = useRef(null); 
 
   const produkterCollection = collection(db, "Produkter");
 
-  // Hämta produkter från Firestore
   const fetchProdukter = async () => {
     const data = await getDocs(produkterCollection);
     setProdukter(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
@@ -24,12 +24,10 @@ export default function Admin() {
     if (localStorage.getItem("isLoggedIn") !== "true") {
       navigate("/login");
     } else {
-      fetchProdukter(); 
+      fetchProdukter();
     }
   }, [navigate]);
-  
 
-  // Lägg till eller uppdatera produkt
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { error } = productSchema.validate(form, { abortEarly: false });
@@ -46,14 +44,18 @@ export default function Admin() {
 
     setError({});
 
+    const cleanedForm = {
+      ...form,
+      pris: form.pris.replace(/[^\d]/g, "")
+    };
+
     if (editingId) {
-      // ändra en produkt
-      await updateDoc(doc(db, "Produkter", editingId), form);
+      await updateDoc(doc(db, "Produkter", editingId), cleanedForm);
       setEditingId(null);
     } else {
-      // Lägger till ny info
-      await addDoc(produkterCollection, form);
+      await addDoc(produkterCollection, cleanedForm);
     }
+
     setForm({ namn: "", pris: "", bild: "" });
     fetchProdukter();
   };
@@ -71,9 +73,13 @@ export default function Admin() {
       bild: produkt.bild,
     });
     setError({});
+
+    //Scrolla till formuläret
+    setTimeout(() => {
+      formRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, 100);
   };
 
-  // Loggar ut
   const handleLogout = () => {
     localStorage.removeItem("isLoggedIn");
     navigate("/login");
@@ -86,34 +92,44 @@ export default function Admin() {
         Logga ut
       </button>
 
-      <form onSubmit={handleSubmit} className="admin-form">
-        <input
-          type="text"
-          placeholder="Produktnamn"
-          value={form.namn}
-          onChange={(e) => setForm({ ...form, namn: e.target.value })}
-        />
-        {error.namn && <p className="error-message">{error.namn}</p>}
+      <form ref={formRef} onSubmit={handleSubmit} className="admin-form">
+        <div className="input-group">
+          {error.namn && <p className="error-message">{error.namn}</p>}
+          <label htmlFor="namn">Produktnamn:</label>
+          <input
+            id="namn"
+            type="text"
+            value={form.namn}
+            onChange={(e) => setForm({ ...form, namn: e.target.value })}
+          />
+        </div>
 
-        <input
-          type="text"
-          placeholder="Pris"
-          value={form.pris}
-          onChange={(e) => setForm({ ...form, pris: e.target.value })}
-        />
-        {error.pris && <p className="error-message">{error.pris}</p>}
+        <div className="input-group">
+          {error.pris && <p className="error-message">{error.pris}</p>}
+          <label htmlFor="pris">Pris:</label>
+          <input
+            id="pris"
+            type="text"
+            value={form.pris}
+            onChange={(e) => setForm({ ...form, pris: e.target.value })}
+          />
+        </div>
 
-        <input
-          type="text"
-          placeholder="Bild-URL"
-          value={form.bild}
-          onChange={(e) => setForm({ ...form, bild: e.target.value })}
-        />
-        {error.bild && <p className="error-message">{error.bild}</p>}
+        <div className="input-group">
+          {error.bild && <p className="error-message">{error.bild}</p>}
+          <label htmlFor="bild">Bild-URL:</label>
+          <input
+            id="bild"
+            type="text"
+            value={form.bild}
+            onChange={(e) => setForm({ ...form, bild: e.target.value })}
+          />
+        </div>
 
         <button type="submit">
           {editingId ? "Uppdatera produkt" : "Lägg till produkt"}
         </button>
+
         {editingId && (
           <button
             type="button"
@@ -133,7 +149,7 @@ export default function Admin() {
           <div key={produkt.id} className="admin-item">
             <img src={produkt.bild} alt={produkt.namn} />
             <div>
-              <strong>{produkt.namn}</strong> – {produkt.pris} kr
+              <strong>{produkt.namn}</strong> {produkt.pris} kr
             </div>
             <button onClick={() => handleEdit(produkt.id, produkt)}>
               Ändra

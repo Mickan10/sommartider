@@ -12,14 +12,22 @@ export const productSchema = Joi.object({
       "any.required": "Produktnamn är obligatoriskt."
     }),
 
-  pris: Joi.string()
-    .pattern(/^\d+ kr$/)
-    .required()
-    .messages({
-      "string.empty": "Pris får inte vara tomt.",
-      "string.pattern.base": "Pris måste vara ett nummer följt av ' kr'.",
-      "any.required": "Pris är obligatoriskt."
-    }),
+    pris: Joi.string()
+      .pattern(/^\d+$/)
+      .custom((value, helpers) => {
+        const number = parseInt(value, 10);
+        if (number < 1) {
+          return helpers.message("Pris måste vara minst 1 kr.");
+        }
+        return value;
+      })
+      .required()
+      .messages({
+        "string.empty": "Pris får inte vara tomt.",
+        "string.pattern.base": "Pris måste vara ett heltal (utan 'kr').",
+        "any.required": "Pris är obligatoriskt."
+      }),
+
 
   bild: Joi.string()
     .uri()
