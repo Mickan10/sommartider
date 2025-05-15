@@ -26,10 +26,11 @@
     border: none;
     border-radius: 6px;
     cursor: pointer;
+    margin-top: 1rem;
   }
   
   .login-page .error {
     color: red;
-    margin-top: 0.5rem;
+    margin-top: 0.9rem;
   }
   

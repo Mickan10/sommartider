@@ -23,8 +23,7 @@ export default function Home() {
       <section className="small-images-container">
         <div className="small-image-box">
           <img src={small1} alt="Leksak 1" className="small-image large" />
-          <p className="small-image-text"></p>
-          <Link to="/produkter" className="gul-knapp">Se alla produkter</Link>
+          <Link to="/produkter" className="gul-knapp">Till alla produkter</Link>
         </div>
         
         <div className="small-image-box">

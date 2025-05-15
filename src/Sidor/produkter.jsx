@@ -84,8 +84,8 @@ export default function Produkter() {
             setSortering({ ...sortering, riktning: e.target.value })
           }
         >
-          <option value="stigande">Stigande</option>
-          <option value="fallande">Fallande</option>
+          <option value="stigande">Sortera efter stigande</option>
+          <option value="fallande">Sortera efter fallande</option>
         </select>
       </div>
 
@@ -97,14 +97,12 @@ export default function Produkter() {
             <div className="bild-wrapper">
               <img src={produkt.bild} alt={produkt.namn} />
 
-              {/* Antal i kundkorgen */}
               {getAntalIKundkorgen(produkt.id) > 0 && (
                 <div className="produkt-antal">
                   {getAntalIKundkorgen(produkt.id)}
                 </div>
               )}
 
-              {/* +- knappar visas vid hover */}
               <div className="bild-knappar">
                 <button onClick={() => removeFromCart(produkt.id)}>-</button>
                 <button

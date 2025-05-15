@@ -14,7 +14,7 @@ html, body {
 
 hr {
   border: none;
-  border-top: 2px solid #BBDAE2;
+  border-top: 10px solid #BBDAE2;
   margin: 50px 0;
   width: 100%;
 }
@@ -40,7 +40,7 @@ hr {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #ede1acb6;
+  background-color: #ede1acc8;
   padding: 2rem;
   text-align: center;
   border-radius: 10px;
@@ -81,6 +81,7 @@ hr {
   margin-top: 3rem;
   gap: 0rem; 
   flex-wrap: wrap; 
+  background-color: #f4f2ec;
 }
 
 .small-image-box {
@@ -93,6 +94,7 @@ hr {
   width: 100%;
   border-radius: 8px;
   object-fit: cover;
+  display: block;
 }
 
 .small-image.large {
@@ -103,19 +105,21 @@ hr {
   height: 850px;
 }
 
-.text2
-{
+.text2 {
   position: absolute;
-  top: 0%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  background-color: #f0df8bc5;
   color: #000000;
   font-family: 'Indie Flower', cursive;
-  font-size: 2.4rem;
-  text-align: center;
   font-weight: bold;
-  background-color: #f0df8bc5;
-  white-space: nowrap;
+  text-align: center;
+  font-size: clamp(1.4rem, 4.5vw, 2.3rem);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  box-sizing: border-box;
 }
 
 .small-image-box:nth-child(1) {
@@ -127,11 +131,12 @@ hr {
 }
 
 .gul-knapp {
-  display: inline-block;
+  display: block;
+  margin: 2rem auto 0 auto;
   padding: 2rem 4rem;
   background-color: #EDE1AC;
   color: #000;
-  font-size: 1.7rem;
+  font-size: 1.9rem;
   font-family: 'Indie Flower', cursive;
   font-weight: bold;
   text-decoration: none;
@@ -139,10 +144,9 @@ hr {
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   transition: background-color 0.3s ease;
-  position: absolute; 
-  bottom: 60px; 
-  left: 50%; 
-  transform: translateX(-50%); 
+  text-align: center;
+  max-width: 320px;
+  text-wrap: nowrap;
 }
 
 .gul-knapp:hover {
@@ -150,21 +154,18 @@ hr {
   cursor: pointer;
 }
 
-@media screen and (max-width: 1100px) {
+
+@media screen and (max-width: 1246px) {
   .overlay-box {
-    width: 80%; 
+    width: 80%;
   }
 
   .overlay-box h2 {
-    font-size: 3rem;
+    font-size: 2rem;
   }
 
   .overlay-box p {
     font-size: 18px;
-  }
-
-  .text2 {
-    font-size: 2rem;
   }
 
   .small-image.large {
@@ -175,11 +176,16 @@ hr {
     height: 700px;
   }
 
+  .text2 {
+    font-size: clamp(1.2rem, 4vw, 2rem);
+  }
+
   .gul-knapp {
-    padding: 1.5rem 3rem;
-    font-size: 1.5rem;
-    white-space: nowrap;
-    bottom: 140px;
+    display: block;
+    margin: 2rem auto 20px auto;
+    max-width: 290px;
+    text-wrap: nowrap;
+    padding: 20px;
   }
 
   .home-image {
@@ -187,38 +193,67 @@ hr {
   }
 }
 
-@media screen and (max-width: 480px) {
-  .overlay-box {
-    width: 90%; 
-    padding: 1rem;
+@media screen and (max-width: 768px) {
+  .text2 {
+    font-size: clamp(1rem, 3.8vw, 1.8rem);
   }
 
-  .text2 {
-    font-size: 1.7rem; 
+  .small-image-box {
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .small-image.large,
+  .small-image.small {
+    object-fit: cover;
+    width: 100%;
+    height: auto; 
+    max-height: none; 
+    object-position: center;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .overlay-box {
+    width: 95%;
+    padding: 0.8rem;
   }
 
   .overlay-box h2 {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
 
   .overlay-box p {
-    font-size: 16px;
+    font-size: 14px;
   }
 
-  .small-image.large {
-    height: 400px;
-  }
-
-  .small-image.small {
-    height: 600px;
+  .small-image-box {
     width: 100%;
-    object-fit: contain;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .small-image.large,
+  .small-image.small {
+    object-fit: cover;
+    width: 100%;
+    height: auto; 
+    max-height: none; 
     object-position: center;
   }
 
+  .text2 {
+    font-size: clamp(1rem, 5vw, 1.4rem);
+    padding: 0.4rem 0.8rem;
+  }
+
   .gul-knapp {
-    padding: 1rem 2rem;
-    font-size: 1.3rem;
+    display: block;
+    margin: 2rem auto 20px auto;
+    max-width: 290px;
+    text-wrap: nowrap;
+    padding: 0px;
   }
 
   .home-image {
@@ -236,10 +271,6 @@ hr {
     font-size: 2rem;
   }
 
-  .text2 {
-    font-size: 1.2rem;
-  }
-
   .overlay-box p {
     font-size: 14px;
   }
@@ -254,18 +285,20 @@ hr {
     width: 100%;
     height: auto; 
     max-height: none; 
+    object-position: center;
+  }
+
+  .text2 {
+    font-size: clamp(0.9rem, 4vw, 1.2rem);
   }
 
   .gul-knapp {
-    padding: 1rem 2.5rem;
-    font-size: 1.2rem;
-    width: 80%;
-    background-color: #ede1ac;
-    bottom: 400px;
+    display: block;
+    margin: 2rem auto 0 auto;
+    padding: 0px;
   }
 
   .home-image {
     object-position: center;
   }
 }
-

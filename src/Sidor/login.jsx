@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import "./login.css";
@@ -6,16 +5,31 @@ import "./login.css";
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [usernameError, setUsernameError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
-    if (username === "admin" && password === "password") {
+    let valid = true;
+
+    // Rensa gamla fel
+    setUsernameError("");
+    setPasswordError("");
+
+    if (username !== "admin") {
+      setUsernameError("Fel användarnamn");
+      valid = false;
+    }
+
+    if (password !== "password") {
+      setPasswordError("Fel lösenord");
+      valid = false;
+    }
+
+    if (valid) {
       localStorage.setItem("isLoggedIn", "true");
       navigate("/admin");
-    } else {
-      setError("Fel användarnamn eller lösenord");
     }
   };
 
@@ -29,14 +43,17 @@ export default function Login() {
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
+        {usernameError && <p className="error">{usernameError}</p>}
+
         <input
           type="password"
           placeholder="Lösenord"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+        {passwordError && <p className="error">{passwordError}</p>}
+
         <button type="submit">Logga in</button>
-        {error && <p className="error">{error}</p>}
       </form>
     </div>
   );
