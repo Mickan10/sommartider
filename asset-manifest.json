@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/sommartider/static/css/main.a827db29.css",
-    "main.js": "/sommartider/static/js/main.e486897d.js",
+    "main.css": "/sommartider/static/css/main.1aa3bd00.css",
+    "main.js": "/sommartider/static/js/main.e42e4cd3.js",
     "static/media/home1.webp": "/sommartider/static/media/home1.044d7a1e0fdf2c126748.webp",
     "static/media/home-photo.webp": "/sommartider/static/media/home-photo.1e356e772203dee2ecff.webp",
     "static/media/home2.webp": "/sommartider/static/media/home2.492c97e68447c70bdfa4.webp",
     "static/media/shopping.jpg": "/sommartider/static/media/shopping.7392dcb99281f916e1e6.jpg",
     "index.html": "/sommartider/index.html",
-    "main.a827db29.css.map": "/sommartider/static/css/main.a827db29.css.map",
-    "main.e486897d.js.map": "/sommartider/static/js/main.e486897d.js.map"
+    "main.1aa3bd00.css.map": "/sommartider/static/css/main.1aa3bd00.css.map",
+    "main.e42e4cd3.js.map": "/sommartider/static/js/main.e42e4cd3.js.map"
   },
   "entrypoints": [
-    "static/css/main.a827db29.css",
-    "static/js/main.e486897d.js"
+    "static/css/main.1aa3bd00.css",
+    "static/js/main.e42e4cd3.js"
   ]
 }
