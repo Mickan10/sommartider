@@ -74,9 +74,16 @@ export default function Admin() {
     });
     setError({});
 
-    //Scrolla till formuläret
+    //Scrolla till formuläret vid ändra
     setTimeout(() => {
-      formRef.current?.scrollIntoView({ behavior: "smooth" });
+      const element = formRef.current;
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+    
+        setTimeout(() => {
+          window.scrollBy({ top: -600, behavior: "smooth" });
+        }, 100); 
+      }
     }, 100);
   };
 

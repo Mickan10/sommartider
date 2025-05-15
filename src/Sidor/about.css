@@ -23,21 +23,20 @@
     color: #000000;
     font-family: 'Indie Flower', cursive;
   }
+
+  .about-box h2 {
+    font-size: 2rem;
+    color: #000000;
+    font-family: 'Indie Flower', cursive;
+    text-align: left;
+  }
   
   .about-box p {
     font-size: 1.1rem;
-    line-height: 2rem;
+    line-height: 1.5rem;
     color: #333;
     font-family: 'Inter', sans-serif;
     text-align: left;
-  }
+    padding-bottom: 1rem;
+    }
 
-.about-image
-{
-    max-width: 80%;
-    height: auto;
-    border-radius: 20px;
-    margin-top: 1rem;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-}
-  
