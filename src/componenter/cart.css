@@ -87,17 +87,17 @@
 
 .cart-item-name {
   font-weight: 600;
-  font-size: 15px;
+  font-size: 16px;
   color: #222;
 }
 
 .cart-item-price {
-  font-size: 14px;
+  font-size: 20px;
   color: #666;
 }
 
 .cart-item-quantity {
-  font-size: 13px;
+  font-size: 17px;
   color: #444;
 }
 
@@ -109,7 +109,7 @@
   font-size: 24px;
   font-weight: bold;
   cursor: pointer;
-  padding: 4px 8px;
+  padding: 4px 1px;
   transition: color 0.2s ease;
 }
 
